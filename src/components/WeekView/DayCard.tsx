@@ -37,20 +37,20 @@ export function DayCard({ dateStr, completions, colorIndex, onClick }: Props) {
     <button
       onClick={onClick}
       className={`
-        w-full flex items-stretch rounded-3xl overflow-hidden
+        w-full flex-1 flex items-stretch rounded-3xl overflow-hidden
         shadow-md active:scale-95 transition-transform duration-100
         ${future ? 'opacity-50' : ''}
       `}
     >
       {/* Colored day tab */}
-      <div className={`${accentColor} flex-shrink-0 w-20 self-stretch flex flex-col items-center justify-center py-4`}>
+      <div className={`${accentColor} flex-shrink-0 w-20 self-stretch flex flex-col items-center justify-center py-2`}>
         <span className="text-white font-black text-lg leading-none">{dayShort}</span>
         <span className="text-white/80 font-bold text-xs mt-0.5">{monthShort} {dayNum}</span>
         {today && <span className="mt-1 text-white text-xs font-black bg-white/30 rounded-full px-1.5 py-0.5">TODAY</span>}
       </div>
 
       {/* Chore emoji icons */}
-      <div className="flex-1 bg-white flex items-center justify-around px-2 py-4">
+      <div className="flex-1 bg-white flex items-center justify-around px-2 py-2">
         {CHORES.map(chore => (
           <ChoreIcon
             key={chore.id}
