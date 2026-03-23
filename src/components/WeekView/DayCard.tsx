@@ -40,7 +40,6 @@ export function DayCard({ dateStr, completions, colorIndex, onClick }: Props) {
         w-full flex items-stretch rounded-3xl overflow-hidden
         shadow-md active:scale-95 transition-transform duration-100
         ${future ? 'opacity-50' : ''}
-        ${today ? 'ring-4 ring-white ring-offset-2 ring-offset-transparent' : ''}
       `}
     >
       {/* Colored day tab */}

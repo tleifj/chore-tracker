@@ -49,7 +49,7 @@ export function WeekView({ dateStrings, weekLabel, weekOffset, isChoreComplete, 
   }, [allWeekDone, weekOffset]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-full flex flex-col overflow-hidden">
       {/* Header */}
       <div className="px-5 pt-14 pb-4">
         <h1 className="text-4xl font-black text-white drop-shadow-md tracking-tight">
@@ -92,7 +92,7 @@ export function WeekView({ dateStrings, weekLabel, weekOffset, isChoreComplete, 
       </div>
 
       {/* Day cards */}
-      <div className="flex-1 px-4 pb-8 flex flex-col gap-3">
+      <div className="flex-1 overflow-y-auto px-4 pb-8 flex flex-col gap-3">
         {dateStrings.map((dateStr, i) => {
           const completions: Record<string, boolean> = {};
           (['make-bed', 'clear-table', 'put-away-things'] as ChoreId[]).forEach(id => {
