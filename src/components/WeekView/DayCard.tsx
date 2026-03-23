@@ -37,7 +37,7 @@ export function DayCard({ dateStr, completions, colorIndex, onClick }: Props) {
     <button
       onClick={onClick}
       className={`
-        w-full flex items-center rounded-3xl overflow-hidden
+        w-full flex items-stretch rounded-3xl overflow-hidden
         shadow-md active:scale-95 transition-transform duration-100
         ${future ? 'opacity-50' : ''}
         ${today ? 'ring-4 ring-white ring-offset-2 ring-offset-transparent' : ''}
@@ -51,7 +51,7 @@ export function DayCard({ dateStr, completions, colorIndex, onClick }: Props) {
       </div>
 
       {/* Chore emoji icons */}
-      <div className="flex-1 bg-white flex items-center justify-around px-2 py-4 min-h-[76px]">
+      <div className="flex-1 bg-white flex items-center justify-around px-2 py-4">
         {CHORES.map(chore => (
           <ChoreIcon
             key={chore.id}
@@ -62,7 +62,7 @@ export function DayCard({ dateStr, completions, colorIndex, onClick }: Props) {
       </div>
 
       {/* Right badge */}
-      <div className="bg-white self-stretch flex items-center pr-3 pl-1 min-h-[76px]">
+      <div className="bg-white flex items-center pr-3 pl-1">
         {allDone ? (
           <span className="text-2xl">⭐</span>
         ) : doneCount > 0 ? (

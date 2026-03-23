@@ -1,5 +1,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import { ChoreId } from '../../types';
+import { CHORES } from '../../constants';
 import { DayCard } from './DayCard';
 
 interface Props {
@@ -19,7 +22,32 @@ function weekTitle(offset: number) {
   return `${offset} Weeks Ahead`;
 }
 
+function fireConfetti() {
+  const colors = ['#f87171', '#fb923c', '#facc15', '#4ade80', '#60a5fa', '#a78bfa', '#f472b6'];
+  confetti({ particleCount: 80, spread: 70, origin: { y: 0.3 }, colors });
+  setTimeout(() => confetti({ particleCount: 60, spread: 90, origin: { y: 0.5 }, colors }), 300);
+  setTimeout(() => confetti({ particleCount: 40, angle: 60,  spread: 60, origin: { x: 0, y: 0.6 }, colors }), 600);
+  setTimeout(() => confetti({ particleCount: 40, angle: 120, spread: 60, origin: { x: 1, y: 0.6 }, colors }), 600);
+}
+
 export function WeekView({ dateStrings, weekLabel, weekOffset, isChoreComplete, onDaySelect, onWeekChange }: Props) {
+  const allWeekDone = dateStrings.every(dateStr =>
+    CHORES.every(chore => isChoreComplete(dateStr, chore.id))
+  );
+
+  const celebratedKey = useRef<string | null>(null);
+
+  useEffect(() => {
+    const key = `${weekOffset}`;
+    if (allWeekDone && celebratedKey.current !== key) {
+      celebratedKey.current = key;
+      fireConfetti();
+    }
+    if (!allWeekDone) {
+      celebratedKey.current = null;
+    }
+  }, [allWeekDone, weekOffset]);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
